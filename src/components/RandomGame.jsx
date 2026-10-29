@@ -53,7 +53,7 @@ export default function RandomGame({ open, onClose }) {
         )}
         <div className="flex flex-col gap-3 sm:flex-row">
           <a onClick={() => game && !rolling && playGame(game)} href={game && !rolling ? game.url : undefined} target="_blank" rel="noopener noreferrer" aria-disabled={rolling || !game}
-            className={`inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-grape px-6 py-3.5 font-bold text-white transition hover:bg-grape active:scale-95 ${rolling || !game ? 'pointer-events-none opacity-40' : ''}`}>
+            className={`detour-play-link inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-bold transition active:scale-95 ${rolling || !game ? 'pointer-events-none opacity-40' : ''}`}>
             Play Now <ExternalLink size={16} />
           </a>
           <button onClick={spin} disabled={rolling} className="inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-3.5 font-bold ring-1 ring-ink/20 transition hover:bg-ink/5 active:scale-95 disabled:opacity-40">

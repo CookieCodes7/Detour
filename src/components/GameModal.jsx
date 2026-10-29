@@ -37,7 +37,7 @@ export default function GameModal({ game, onClose }) {
             <div className="flex flex-wrap gap-1.5 text-sm text-ink/60">{g.tags.map((t) => <span key={t}>#{t}</span>)}</div>
             <FavButton game={g} label className="w-full sm:w-auto" />
             <div className="flex flex-col gap-3 sm:flex-row">
-              <a onClick={() => playGame(g)} href={g.url} target="_blank" rel="noopener noreferrer" className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-grape px-6 py-3.5 font-bold text-white transition hover:bg-grape active:scale-95">
+              <a onClick={() => playGame(g)} href={g.url} target="_blank" rel="noopener noreferrer" className="detour-play-link inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-bold transition active:scale-95">
                 PLAY GAME <ArrowRight size={18} />
               </a>
               <a href={new URL(g.url).origin} target="_blank" rel="noopener noreferrer" className="inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-3.5 font-bold ring-1 ring-ink/20 transition hover:bg-ink/5 active:scale-95">

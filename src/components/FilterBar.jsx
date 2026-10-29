@@ -2,7 +2,7 @@ import { Search } from 'lucide-react';
 import { filters, sorts } from '../data/games';
 export default function FilterBar({ query, setQuery, filter, setFilter, sort, setSort }) {
   return (
-    <div className="sticky top-16 z-30 -mx-4 space-y-3 bg-[#0b0a1f]/80 px-4 py-4 backdrop-blur md:mx-0 md:rounded-3xl">
+    <div className="detour-filterbar sticky top-16 z-30 -mx-4 space-y-3 px-4 py-4 md:mx-0 md:rounded-2xl">
       <div className="flex flex-col gap-3 sm:flex-row">
         <label className="relative flex-1">
           <span className="sr-only">Search games</span>
@@ -20,7 +20,7 @@ export default function FilterBar({ query, setQuery, filter, setFilter, sort, se
       <div className="noscroll -mx-4 flex gap-2 overflow-x-auto px-4 pb-1" role="group" aria-label="Filter by category">
         {filters.map(([k, l]) => (
           <button key={k} onClick={() => setFilter(k)} aria-pressed={filter === k}
-            className={`shrink-0 rounded-full px-4 py-2 text-sm font-bold transition active:scale-95 ${filter === k ? 'bg-grape text-white' : 'glass ring-1 ring-ink/10 hover:bg-ink/5'}`}>{l}</button>
+            className={`detour-filter-chip shrink-0 rounded-xl px-4 py-2 text-sm font-bold transition active:scale-95 ${filter === k ? 'active' : ''}`}>{l}</button>
         ))}
       </div>
     </div>

@@ -13,7 +13,7 @@ export default function Category() {
   return (
     <div className={`pat pat-${cat}`} style={{ backgroundImage: `radial-gradient(60% 40% at 80% 0%, ${c.accent}2e, transparent 70%)` }}>
       <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 md:px-6">
-        <div className="relative grid overflow-hidden rounded-[2rem] border border-white/10 text-white shadow-[0_0_60px_-20px_var(--a)] md:grid-cols-2" style={{ '--a': c.accent, background: `linear-gradient(135deg,${c.accent}cc,#1a1440 80%)` }}>
+        <div className="detour-category-hero relative grid overflow-hidden rounded-2xl border md:grid-cols-2" style={{ '--a': c.accent }}>
           <div className="p-8 md:p-12">
             <Link to="/games" className="text-sm font-bold text-white/80 hover:underline">← All games</Link>
             <h1 className={`mt-4 text-5xl font-bold leading-none md:text-7xl ${cat === 'crosswords' ? 'font-serif font-bold' : 'font-display'}`}>{c.label}</h1>
@@ -24,7 +24,7 @@ export default function Category() {
         <div className="mt-10">
           {list.length ? <GameGrid games={list} /> : (
             <EmptyState title="No games here yet" body="This category is empty. Browse everything instead.">
-              <Link to="/games" className="rounded-full bg-grape px-6 py-3 font-bold text-white">Back to Games</Link>
+              <Link to="/games" className="detour-play-link rounded-xl px-6 py-3 font-bold">Back to Games</Link>
             </EmptyState>
           )}
         </div>

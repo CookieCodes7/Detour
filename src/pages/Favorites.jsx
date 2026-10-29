@@ -15,7 +15,7 @@ function Empty() {
       <motion.div className="relative mx-auto mb-6 grid h-24 w-24 place-items-center rounded-full border border-pink-400/40 bg-pink-500/10 text-pink-300 shadow-[0_0_40px_rgba(244,114,182,.4)]" animate={{ scale: [1, 1.08, 1] }} transition={{ duration: 2.4, repeat: Infinity }}><Heart size={44} /></motion.div>
       <h2 className="relative font-display text-3xl font-bold">No favorites yet.</h2>
       <p className="relative mx-auto mt-2 max-w-sm text-ink/70">Save games you want to come back to and they’ll appear here.</p>
-      <Link to="/games" className="relative mt-8 inline-flex rounded-full bg-gradient-to-r from-grape to-fuchsia-500 px-8 py-4 font-bold text-white shadow-[0_0_30px_rgba(109,76,255,.5)] transition hover:scale-105 active:scale-95">Explore Games</Link>
+      <Link to="/games" className="detour-play-link relative mt-8 inline-flex rounded-xl px-8 py-4 font-bold transition hover:scale-[1.02] active:scale-95">Explore Games</Link>
     </div>
   );
 }

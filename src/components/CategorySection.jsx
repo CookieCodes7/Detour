@@ -13,7 +13,7 @@ export default function CategorySection({ slug, games }) {
             <h2 className={`font-display text-4xl font-bold md:text-5xl ${slug === 'crosswords' ? 'font-serif' : ''}`} style={{ textShadow: `0 0 40px ${c.accent}88` }}>{c.label}</h2>
             <p className="mt-2 max-w-xl text-ink/70">{c.blurb}</p>
           </div>
-          <Link to={`/games/${slug}`} className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold text-white ring-1 ring-white/20 transition hover:bg-white/10 hover:shadow-[0_0_24px_var(--a)]" style={{ '--a': c.accent }}>See all <ArrowRight size={16} /></Link>
+          <Link to={`/games/${slug}`} className="detour-section-link inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition" style={{ '--a': c.accent }}>See all <ArrowRight size={16} /></Link>
         </div>
         <GameGrid games={games} />
       </div>

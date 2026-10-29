@@ -10,6 +10,7 @@ export const categories = {
   strategy: { label: 'Strategy & Board Puzzles', short: 'Strategy', accent: '#8B5CF6', blurb: 'Tactics, territory and always one move too many.' },
   weird: { label: 'Why Does This Exist?', short: 'Weird', accent: '#FF4F9A', blurb: 'Strange, brilliant and impossible to explain at dinner.' },
   gems: { label: 'Hidden Gems', short: 'Gems', accent: '#A78BFA', blurb: 'Lesser-known games worth bookmarking before everyone else finds them.' },
+  science: { label: 'Science & Knowledge', short: 'Science', accent: '#14B8A6', blurb: 'Anatomy, animals, perception and curious facts turned into playable puzzles.' },
 };
 
 const N = 'https://www.nytimes.com/';
@@ -70,6 +71,23 @@ const rows = [
   ['cookie-clicker','Cookie Clicker','weird','Click a cookie. Buy grandmas. Lose a weekend.','Easy',60,'idle','https://orteil.dashnet.org/cookieclicker/','#C98B4B',2013,''],
   ['wikipedia-game','The Wiki Game','weird','Race from one Wikipedia article to another using only links.','Medium',5,'trivia multiplayer','https://www.thewikigame.com','#6D5BD0',2010,'g'],
   ['wikispeedruns','Wikispeedruns','weird','Wikipedia link races with daily prompts and leaderboards.','Medium',5,'trivia daily','https://www.wikispeedruns.com','#4C8BF5',2021,'g'],
+
+  ['minute-cryptic','Minute Cryptic','crosswords','Solve one approachable cryptic clue a day with hints and explanations that teach you how the wordplay works.','Hard',3,'cryptic daily word','https://www.minutecryptic.com/','#F3C969',2024,'d','One cryptic clue • hints if you need them'],
+  ['wonderhop','Wonderhop','media','A daily survey-style game where you try to give the most common, rarest, oldest or newest answer.','Medium',5,'trivia daily survey','https://wonderhop.io/','#F59E0B',2026,'d','Four games • seven questions each'],
+  ['dont-wordle','Don’t Wordle','word','Wordle in reverse: survive six guesses without accidentally landing on the hidden answer.','Hard',8,'word guessing daily','https://dontwordle.com/','#6AAA64',2022,'d','Avoid the answer'],
+  ['magnitudle','Magnitudle','logic','Estimate real-world scale, size and quantities using intuition rather than exact knowledge.','Medium',8,'estimation daily numbers','https://magnitudle.com/','#2563EB',2026,'d','How good is your sense of scale?'],
+  ['fermi','Fermi.gg','logic','Make three Fermi estimates a day and get scored on how close your napkin-math guess lands.','Hard',6,'estimation daily numbers','https://fermi.gg/','#14B8A6',2026,'d','Three questions • one guess each'],
+  ['hidden-layer-labs','Layers','word','Solve four mini-games, unlock four words, then sort sixteen words into four hidden groups.','Hard',10,'word connections daily','https://hiddenlayerlabs.com/','#8B5CF6',2026,'d','Four mini-games • one final board'],
+  ['perceptle','Perceptle','science','Five quick perception tests: count, track, angle, tempo and split.','Medium',5,'perception daily reaction','https://perceptle.net/','#0EA5E9',2026,'d','Five tests • one score'],
+  ['clueffy','Clueffy Game','media','Answer open questions with unusual answers and earn more points when fewer players thought of the same thing.','Medium',5,'trivia daily rare answers','https://clueffy.games/','#F97316',2026,'d','Rare answers score higher'],
+  ['jeff-goldblumble','Jeff Goldblumle','media','A ridiculous 12-letter daily word game where JEFFGOLDBLUM is the answer most of the time.','Easy',3,'word trivia daily','https://jeffgoldblumle.org/','#F4C430',2026,'d','12 letters • 3 attempts'],
+  ['poople','Poople','word','Turn the starting four-letter word into POOP one letter at a time in as few steps as possible.','Medium',3,'word ladder daily','https://poople.io/','#111827',2026,'d','Change one letter at a time'],
+  ['angledle','Angledle','logic','Guess the mystery angle from 1° to 359° in six tries using hot, warm and cold feedback.','Medium',4,'estimation daily geometry','https://angledle.com/','#0EA5E9',2026,'d','Find the exact angle'],
+  ['birdle','Birdle','science','Identify the daily bird using hints, calls and a growing set of clues.','Medium',5,'birds daily trivia','https://www.birdle.fun/','#16A34A',2026,'d','Five guesses • one bird'],
+  ['chainle','Chainle','word','Find the word in the middle of clue pairs, with five daily connection rounds.','Medium',6,'word connections daily','https://chainle.io/','#14B8A6',2026,'d','Five rounds • find the link'],
+  ['metazooa','Metazooa','science','Guess the mystery animal while every wrong guess reveals another branch of its taxonomy.','Hard',8,'animals daily trivia','https://metazooa.com/','#84CC16',2021,'d','20 guesses • climb the family tree'],
+  ['enclose-horse','Enclose Horse','strategy','Place a limited number of fences to enclose the horse and maximize the area you capture.','Hard',5,'optimization daily strategy','https://enclosehorse.com/','#15803D',2026,'d','One puzzle • one shot'],
+  ['musculoskelordle','Musculoskelordle','science','Guess the mystery muscle from anatomy clues including region, origin, insertion, action and innervation.','Hard',10,'anatomy daily education','https://www.musculoskelordle.net/','#DC2626',2022,'d','Name the muscle'],
 ];
 
 const VT = {
@@ -80,9 +98,28 @@ const VT = {
   nonograms:'nonogram', slitherlink:'nodes', binairo:'numbers', kenken:'numbers', worldle:'globe', globle:'globe',
   geoguessr:'map', seterra:'map', geogrid:'map', tradle:'map', framed:'movie', 'guess-the-game':'movie', bandle:'music',
   sporcle:'quiz', balatrodle:'balatrodle', krillion:'krillion', 'absurd-trolley':'quiz', 'lichess-puzzles':'chess', 'chess-daily-puzzle':'chess', 'puzzle-storm':'chess',
-  'online-go':'go', hex:'go', 'connect-four':'discs', checkers:'discs', 'password-game':'password',
+  'online-go':'go', hex:'go', 'connect-four':'discs', checkers:'discs', 'password-game':'password', 'minute-cryptic':'cryptic', 'dont-wordle':'wordle', 'poople':'wordle', 'jeff-goldblumble':'wordle', 'chainle':'connections', 'hidden-layer-labs':'connections', 'magnitudle':'similar', 'fermi':'numbers', 'perceptle':'numbers', 'clueffy':'quiz', 'angledle':'nodes', 'birdle':'quiz', 'metazooa':'nodes', 'enclose-horse':'nodes', 'musculoskelordle':'quiz',
   'wikipedia-game':'nodes', wikispeedruns:'nodes',
 };
+
+// Static artwork / screenshots used for catalogue cards. These are fixed image URLs,
+// not live website screenshots, so ads and page layouts can never distort the cards.
+const IMAGE_BY_ID = {
+  'minute-cryptic': 'https://static.prod.thinkygames.com/uploads/screenshots/6ee07eae-b437-4571-95bf-b68020daf27d/df069180-f3a7-4c45-88f6-eb4736f2888c-original.png',
+  wonderhop: 'https://wonderhop.io/og/en.png',
+  'dont-wordle': 'https://redactlegame.com/data/image/dont-wordle1.png',
+  magnitudle: 'https://cdn.dlegames.org/blog/2026/07/qla1-2FErUKBupBJ3111M-pasted-image.webp',
+  fermi: 'https://cdn.alldle.net/games/6d58bc283f5724441febbc412ff81e13ed96a7530a94ddce3a2f627623d8e1b9.webp',
+  'hidden-layer-labs': 'https://hiddenlayerlabs.com/_next/image?q=75&url=%2Fscreenshots%2Fscreenshot1.png&w=3840',
+  'jeff-goldblumble': 'https://jeffgoldblumle.org/assets/og-jeffgoldblumle.png',
+  poople: 'https://media.indiedb.com/images/games/1/93/92449/poople.jpg',
+  angledle: 'https://nytwordle.today/wp-content/uploads/2024/05/wtf.webp',
+  birdle: 'https://cdn.alldle.net/games/3cd84da0-8c16-4a78-9c6e-a12fcb41ffa8.webp',
+  metazooa: 'https://listdle.com/screenshots/metazooa.webp',
+  'enclose-horse': 'https://kotaku.com/igdb/image/upload/t_720p/sc1128q.jpg',
+  musculoskelordle: 'https://static.wixstatic.com/media/f30174_f68ed4caa48740f58478e3d66f552645~mv2.png/v1/fill/w_973%2Ch_504%2Cal_c/f30174_f68ed4caa48740f58478e3d66f552645~mv2.png',
+};
+
 const rank = { Easy: 1, Medium: 2, Hard: 3 };
 export const games = rows.map((r, i) => {
   const [id, name, category, description, difficulty, minutes, tags, url, accent, year, flags = '', hint = ''] = r;
@@ -91,12 +128,12 @@ export const games = rows.map((r, i) => {
   if (flags.includes('d')) t.add('daily');
   if (flags.includes('g')) t.add('gem');
   return { id, name, category, description, difficulty, minutes, duration: `${minutes} min`, tags: [...t], url, accent, year,
-    featured: flags.includes('f'), daily: flags.includes('d'), gem: flags.includes('g'), hint, visualType: VT[id] || (category === 'weird' ? 'weird' : 'generic'), pop: rows.length - i, rank: rank[difficulty] };
+    featured: flags.includes('f'), daily: flags.includes('d'), gem: flags.includes('g'), hint, image: IMAGE_BY_ID[id] || null, visualType: VT[id] || (category === 'weird' ? 'weird' : 'generic'), pop: rows.length - i, rank: rank[difficulty] };
 });
 
 export const filters = [
   ['all','All'],['word','Word'],['logic','Logic'],['numbers','Numbers'],['geography','Geography'],['movies','Movies'],['music','Music'],
-  ['crossword','Crossword'],['strategy','Strategy'],['trivia','Trivia'],['daily','Daily'],['weird','Weird'],['multiplayer','Multiplayer'],
+  ['crossword','Crossword'],['strategy','Strategy'],['trivia','Trivia'],['science','Science'],['daily','Daily'],['weird','Weird'],['multiplayer','Multiplayer'],
 ];
 export const sorts = [['popular','Popular'],['az','A–Z'],['newest','Newest'],['quickest','Quickest'],['hardest','Hardest']];
 export const host = (url) => new URL(url).hostname.replace(/^www\./, '');

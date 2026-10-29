@@ -9,7 +9,6 @@ import Motif from '../components/Motif';
 import { categories, games } from '../data/games';
 import { useFavorites } from '../hooks/useFavorites';
 import { useRecentlyPlayed } from '../hooks/useRecentlyPlayed';
-import Achievements from '../components/Achievements';
 
 const slugs = Object.keys(categories);
 const by = (cat, n = 4) => games.filter((g) => g.category === cat).slice(0, n);
@@ -19,7 +18,7 @@ function Stats() {
   return (
     <section className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-12 md:grid-cols-4 md:px-6">
       {stats.map(([n, l]) => (
-        <div key={l} className="glass rounded-3xl p-6 text-center">
+        <div key={l} className="detour-stat-card rounded-2xl p-6 text-center">
           <p className="bg-gradient-to-r from-cyan-300 to-fuchsia-400 bg-clip-text font-display text-5xl font-bold text-transparent">{n}</p>
           <p className="mt-1 text-sm font-bold text-ink/60">{l}</p>
         </div>
@@ -41,7 +40,7 @@ export default function Home() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <GameCard game={feat[0]} big />
           {feat.slice(1).map((g, i) => <GameCard key={g.id} game={g} index={i + 1} />)}
-          <Link to="/games" className="glass group grid min-h-40 place-items-center rounded-3xl p-6 text-center transition hover:border-white/35 hover:shadow-[0_0_40px_-10px_#7C5CFF]">
+          <Link to="/games" className="detour-more-card group grid min-h-40 place-items-center rounded-2xl p-6 text-center transition">
             <span className="font-pixel text-[11px] leading-relaxed">All {games.length} games<ArrowRight className="ml-2 inline transition group-hover:translate-x-1" /></span>
           </Link>
         </div>
@@ -72,9 +71,9 @@ export default function Home() {
         <h2 className="font-pixel text-2xl leading-relaxed md:text-4xl">Pick a playground</h2>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {slugs.map((s) => (
-            <Link key={s} to={`/games/${s}`} style={{ background: `linear-gradient(135deg,${categories[s].accent},#1a1440)`, '--a': categories[s].accent }} className="group relative h-44 overflow-hidden rounded-3xl border border-white/10 transition hover:-translate-y-1 hover:border-white/35 hover:shadow-[0_0_36px_-8px_var(--a)]">
+            <Link key={s} to={`/games/${s}`} style={{ '--a': categories[s].accent }} className="detour-category-card group relative h-44 overflow-hidden rounded-2xl border transition">
               <Motif game={{ category: s, name: categories[s].short, tags: [] }} />
-              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 pt-10 font-pixel text-[10px] leading-relaxed text-white">{categories[s].label}</span>
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#fff3d2] via-[#fff3d2]/85 to-transparent p-4 pt-10 font-pixel text-[10px] leading-relaxed text-[#263a3e]">{categories[s].label}</span>
             </Link>
           ))}
         </div>
@@ -86,12 +85,11 @@ export default function Home() {
       <CategorySection slug="weird" games={by('weird')} />
       <CategorySection slug="gems" games={games.filter((g) => g.gem).slice(0, 4)} />
       <section className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-        <Link to="/universe" className="group relative block overflow-hidden rounded-[2rem] border border-white/10 p-8 glass transition hover:-translate-y-1 hover:border-cyan-300/30 md:p-12">
-          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl transition group-hover:bg-cyan-400/20" />
-          <div className="relative max-w-2xl"><span className="text-xs font-black uppercase tracking-[0.25em] text-cyan-200">New way to explore</span><h2 className="mt-4 font-pixel text-2xl leading-relaxed md:text-4xl">ENTER THE PUZZLE UNIVERSE</h2><p className="mt-4 text-ink/65">Navigate a constellation of categories instead of scrolling a list. Pick a planet and see what lives there.</p><span className="mt-7 inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-3 text-sm font-bold ring-1 ring-white/15">Explore the map <ArrowRight size={16} className="transition group-hover:translate-x-1" /></span></div>
+        <Link to="/universe" className="detour-universe-teaser group relative block overflow-hidden rounded-2xl border p-8 transition md:p-12">
+          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#78b9b2]/25 blur-3xl transition group-hover:bg-[#f4c84a]/30" />
+          <div className="relative max-w-2xl"><span className="text-xs font-black uppercase tracking-[0.25em] text-[#6b7d72]">New way to explore</span><h2 className="mt-4 font-pixel text-2xl leading-relaxed md:text-4xl">ENTER THE PUZZLE UNIVERSE</h2><p className="mt-4 text-[#5c6b68]">Navigate a constellation of categories instead of scrolling a list. Pick a planet and see what lives there.</p><span className="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#f4c84a] px-5 py-3 text-sm font-bold text-[#24363b] shadow-[4px_4px_0_#24363b]">Explore the map <ArrowRight size={16} className="transition group-hover:translate-x-1" /></span></div>
         </Link>
       </section>
-      <Achievements compact />
       <Stats />
     </>
   );

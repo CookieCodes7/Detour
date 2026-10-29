@@ -23,7 +23,7 @@ export default function Games() {
       <div className="mt-6">
         {results.length ? <GameGrid games={results} /> : (
           <EmptyState title="No games found" body="Nothing matches those filters. Clear them and try a broader search.">
-            <button onClick={reset} className="rounded-full bg-grape px-6 py-3 font-bold text-white">Clear filters</button>
+            <button onClick={reset} className="detour-play-link rounded-xl px-6 py-3 font-bold">Clear filters</button>
           </EmptyState>
         )}
       </div>

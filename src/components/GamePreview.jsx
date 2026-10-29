@@ -349,13 +349,25 @@ export default function GamePreview({ game, size = 'md' }) {
   const Cmp = V[game.visualType] || Generic;
   const sc = { sm: 0.62, md: 1, lg: 1.9 }[size];
   return (
-    <div className="preview-shell absolute inset-0 overflow-hidden" aria-hidden="true"
-      style={{ background: `radial-gradient(120% 100% at 20% 0%, ${game.accent}55, transparent 60%), linear-gradient(160deg,#17143a,#0c0a22)` }}>
-      <div className="absolute inset-0 opacity-30" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px)', backgroundSize: '22px 22px' }} />
-      <div className="preview-scan z-20" />
-      <div className="absolute inset-0 grid place-items-center">
-        <div className="h-36 w-[240px] shrink-0" style={{ transform: `scale(${sc})` }}><Cmp g={game} s={hash(game.id)} /></div>
+    <div className="preview-shell absolute inset-0 overflow-hidden bg-[#e9e2d4]" aria-hidden="true">
+      {game.image ? (
+        <img
+          src={game.image}
+          alt=""
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          className="absolute inset-0 h-full w-full object-cover object-center transition duration-500 group-hover:scale-[1.035]"
+          onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling?.classList.remove('hidden'); }}
+        />
+      ) : null}
+      <div className={`${game.image ? 'hidden ' : ''}absolute inset-0`} style={{ background: `radial-gradient(120% 100% at 20% 0%, ${game.accent}55, transparent 60%), linear-gradient(160deg,#17143a,#0c0a22)` }}>
+        <div className="absolute inset-0 opacity-30" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px)', backgroundSize: '22px 22px' }} />
+        <div className="preview-scan z-20" />
+        <div className="absolute inset-0 grid place-items-center">
+          <div className="h-36 w-[240px] shrink-0" style={{ transform: `scale(${sc})` }}><Cmp g={game} s={hash(game.id)} /></div>
+        </div>
       </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10 pointer-events-none" />
     </div>
   );
 }
