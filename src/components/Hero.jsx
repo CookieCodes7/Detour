@@ -1,108 +1,285 @@
-import { Link } from 'react-router-dom';
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
-import { Shuffle } from 'lucide-react';
-import { useUI } from '../hooks/useUI';
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Shuffle, ArrowUpRight } from "lucide-react";
 
-const SYMBOLS = ['◆', '●', '✦', '▲', '■', '7', '?', '+', '◇', '○', '✧', '△'];
-const COLORS = ['#F4C84A', '#F6E8C2', '#8BB9B4', '#C26A5C', '#315E6A'];
-const rnd = (i) => (Math.imul(i + 7, 2654435761) >>> 0) % 1000 / 1000;
-const floaters = SYMBOLS.map((g, i) => ({
-  g,
-  x: 5 + rnd(i) * 90,
-  y: 12 + rnd(i + 40) * 76,
-  sz: 12 + rnd(i + 80) * 16,
-  c: COLORS[i % COLORS.length],
-  r: Math.round((rnd(i + 5) - 0.5) * 30),
-}));
+const facts = [
+  {
+    game: "MINUTE CRYPTIC",
+    text: "One tiny clue. One very angry brain.",
+    className: "fact-one",
+  },
+  {
+    game: "FERMI",
+    text: "Estimate the impossible. No calculator allowed.",
+    className: "fact-two",
+  },
+  {
+    game: "METAZOOA",
+    text: "Guess the animal hiding behind the clues.",
+    className: "fact-three",
+  },
+  {
+    game: "BIRDLE",
+    text: "Today's mystery bird is waiting.",
+    className: "fact-four",
+  },
+];
 
-function Layer({ mx, my, k, children, className = '' }) {
-  const x = useTransform(mx, (v) => v * k);
-  const y = useTransform(my, (v) => v * k);
-  return <motion.div style={{ x, y }} className={className}>{children}</motion.div>;
+function PixelHorse() {
+  return (
+    <motion.div
+      className="hero-horse"
+      initial={{ x: "-20vw" }}
+      animate={{ x: "110vw" }}
+      transition={{
+        duration: 13,
+        repeat: Infinity,
+        repeatDelay: 5,
+        ease: "linear",
+      }}
+    >
+      <div className="horse-dust dust-one" />
+      <div className="horse-dust dust-two" />
+
+      <svg
+        className="horse-svg"
+        viewBox="0 0 120 90"
+        aria-hidden="true"
+      >
+        {/* pixel horse silhouette */}
+        <path
+          d="
+            M18 53
+            L18 39
+            L27 39
+            L27 28
+            L37 28
+            L37 18
+            L51 18
+            L51 11
+            L67 11
+            L67 17
+            L78 17
+            L78 27
+            L91 27
+            L91 36
+            L101 36
+            L101 48
+            L94 48
+            L94 57
+            L87 57
+            L87 77
+            L78 77
+            L78 59
+            L65 59
+            L65 76
+            L56 76
+            L56 58
+            L42 58
+            L42 72
+            L33 72
+            L33 56
+            L24 56
+            L24 62
+            L15 62
+            L15 53
+            Z
+          "
+          fill="currentColor"
+        />
+
+        {/* mane */}
+        <path
+          d="
+            M37 28
+            L37 18
+            L47 18
+            L47 12
+            L56 12
+            L56 20
+            L49 20
+            L49 29
+            Z
+          "
+          fill="#d26f52"
+        />
+
+        {/* eye */}
+        <rect x="82" y="34" width="4" height="4" fill="#f8e9bf" />
+
+        {/* saddle */}
+        <rect x="52" y="27" width="23" height="6" fill="#d8a62f" />
+        <rect x="58" y="33" width="5" height="13" fill="#d8a62f" />
+      </svg>
+    </motion.div>
+  );
 }
 
-function Cloud({ className = '' }) {
-  return <div className={`detour-clean-cloud ${className}`} aria-hidden="true"><i /><i /><i /></div>;
+function FactCard({ game, text, className }) {
+  return (
+    <motion.div
+      className={`hero-fact ${className}`}
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.35 }}
+      whileHover={{
+        y: -6,
+        rotate: -1,
+        scale: 1.025,
+      }}
+    >
+      <div className="fact-pin" />
+
+      <div className="fact-game">{game}</div>
+
+      <div className="fact-text">{text}</div>
+
+      <div className="fact-arrow">
+        <ArrowUpRight size={13} strokeWidth={3} />
+      </div>
+    </motion.div>
+  );
+}
+
+function MiniPuzzle({ type, className }) {
+  return (
+    <motion.div
+      className={`mini-puzzle ${className}`}
+      animate={{
+        y: [0, -5, 0],
+        rotate: [-1, 1, -1],
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    >
+      {type === "word" && (
+        <>
+          <div className="mini-label">TODAY</div>
+          <div className="word-row">
+            <span className="green">W</span>
+            <span className="green">O</span>
+            <span>R</span>
+            <span>D</span>
+            <span className="yellow">?</span>
+          </div>
+        </>
+      )}
+
+      {type === "number" && (
+        <>
+          <div className="mini-label">QUICK PUZZLE</div>
+          <div className="number-grid">
+            <span>1</span>
+            <span>7</span>
+            <span>3</span>
+            <span>8</span>
+            <span className="empty">?</span>
+            <span>2</span>
+            <span>9</span>
+            <span>4</span>
+            <span>6</span>
+          </div>
+        </>
+      )}
+
+      {type === "horse" && (
+        <>
+          <div className="mini-label">MAKE A MOVE</div>
+          <div className="mini-horse">♞</div>
+        </>
+      )}
+    </motion.div>
+  );
 }
 
 export default function Hero() {
-  const { surprise } = useUI();
-  const reduce = useReducedMotion();
-  const mx = useSpring(useMotionValue(0), { stiffness: 55, damping: 20 });
-  const my = useSpring(useMotionValue(0), { stiffness: 55, damping: 20 });
-  const move = (e) => {
-    if (reduce) return;
-    const r = e.currentTarget.getBoundingClientRect();
-    mx.set((e.clientX - r.left) / r.width - 0.5);
-    my.set((e.clientY - r.top) / r.height - 0.5);
-  };
-
   return (
-    <section onPointerMove={move} className="detour-clean-hero">
-      <div className="detour-clean-world" aria-hidden="true">
-        <div className="detour-clean-sun" />
-        <Cloud className="detour-clean-cloud-a" />
-        <Cloud className="detour-clean-cloud-b" />
-        <div className="detour-clean-island detour-clean-island-left" />
-        <div className="detour-clean-island detour-clean-island-right" />
-        <div className="detour-clean-water" />
-        <div className="detour-clean-wave wave-a" />
-        <div className="detour-clean-wave wave-b" />
-        <div className="detour-clean-wave wave-c" />
-      </div>
+    <section className="detour-hero">
+      {/* sky texture */}
+      <div className="hero-sky" />
 
-      <Layer mx={mx} my={my} k={5} className="detour-clean-floaters">
-        {floaters.map((p, i) => <span key={i} style={{ left: `${p.x}%`, top: `${p.y}%`, color: p.c, fontSize: p.sz, '--r': `${p.r}deg` }}>{p.g}</span>)}
-      </Layer>
+      {/* clouds */}
+      <div className="hero-cloud cloud-one" />
+      <div className="hero-cloud cloud-two" />
+      <div className="hero-cloud cloud-three" />
 
-      <Layer mx={mx} my={my} k={9} className="detour-clean-decor">
-        <div className="detour-mini-card detour-mini-word">
-          <div className="mini-label">TODAY</div>
-          <div className="mini-word-row"><b>W</b><b>O</b><b className="muted">R</b><b>D</b><b className="gold">?</b></div>
-        </div>
-        <div className="detour-mini-card detour-mini-grid">
-          <div className="mini-label">QUICK PUZZLE</div>
-          <div className="mini-grid">{[1,0,3,0,7,0,0,9,2].map((n,i)=><span key={i}>{n || ''}</span>)}</div>
-        </div>
-        <div className="detour-mini-card detour-mini-chess">
-          <div className="mini-label">MAKE A MOVE</div>
-          <div className="mini-chess">♞</div>
-        </div>
-        <div className="detour-mini-badge detour-badge-left">◆ NEW PUZZLE</div>
-        <div className="detour-mini-badge detour-badge-right">✦ 56 GAMES</div>
-      </Layer>
+      {/* distant mountains */}
+      <div className="mountains mountains-left" />
+      <div className="mountains mountains-right" />
 
-      <div className="detour-clean-content">
+      {/* floating puzzle symbols */}
+      <div className="hero-symbol symbol-one">+</div>
+      <div className="hero-symbol symbol-two">?</div>
+      <div className="hero-symbol symbol-three">✦</div>
+      <div className="hero-symbol symbol-four">△</div>
+      <div className="hero-symbol symbol-five">○</div>
+
+      {/* small floating puzzle cards */}
+      <MiniPuzzle type="word" className="puzzle-word" />
+      <MiniPuzzle type="number" className="puzzle-number" />
+      <MiniPuzzle type="horse" className="puzzle-horse" />
+
+      {/* labels */}
+      <div className="hero-stamp stamp-new">✦ NEW PUZZLE</div>
+      <div className="hero-stamp stamp-games">✦ 56 GAMES</div>
+
+      {/* game facts */}
+      <FactCard {...facts[0]} />
+      <FactCard {...facts[1]} />
+      <FactCard {...facts[2]} />
+      <FactCard {...facts[3]} />
+
+      {/* running horse */}
+      <PixelHorse />
+
+      {/* main hero */}
+      <div className="hero-center">
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65 }}
-          className="detour-clean-title"
+          className="detour-title-wrap"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7 }}
         >
-          DETOUR
+          <h1 className="detour-title">DETOUR</h1>
+          <div className="detour-title-shadow">DETOUR</div>
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
+          className="detour-tagline"
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.12, duration: 0.5 }}
-          className="detour-clean-tagline"
+          transition={{ delay: 0.25, duration: 0.5 }}
         >
           FIND SOMETHING WORTH PLAYING.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          className="hero-actions"
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.22, duration: 0.5 }}
-          className="detour-clean-actions"
+          transition={{ delay: 0.35, duration: 0.5 }}
         >
-          <Link to="/games" className="detour-clean-primary">EXPLORE GAMES</Link>
-          <button onClick={surprise} className="detour-clean-secondary"><Shuffle size={16} /> SURPRISE ME</button>
+          <Link to="/games" className="hero-button hero-button-primary">
+            EXPLORE GAMES
+          </Link>
+
+          <Link to="/random" className="hero-button hero-button-secondary">
+            <Shuffle size={15} strokeWidth={3} />
+            SURPRISE ME
+          </Link>
         </motion.div>
       </div>
 
-      <div className="detour-clean-scroll" aria-hidden="true">↓ SCROLL TO EXPLORE</div>
+      {/* ocean */}
+      <div className="hero-ocean">
+        <div className="ocean-lines" />
+      </div>
+
+      <div className="hero-scroll">↓ SCROLL TO EXPLORE</div>
     </section>
   );
 }

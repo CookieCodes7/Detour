@@ -501,3 +501,801 @@ main { background:#fff3d2; }
 @media (min-width: 1024px) {
   .detour-mobile-overlay { display: none; }
 }
+
+/* =========================================================
+   DETOUR — NEW HERO WORLD
+   ========================================================= */
+
+.detour-hero {
+  position: relative;
+  min-height: calc(100vh - 64px);
+  height: 860px;
+  overflow: hidden;
+  background: #f5dca8;
+  color: #172d31;
+  isolation: isolate;
+}
+
+/* ---------------------------------------------------------
+   SKY
+   --------------------------------------------------------- */
+
+.hero-sky {
+  position: absolute;
+  inset: 0 0 43%;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 246, 211, 0.72), transparent 30%),
+    linear-gradient(
+      to bottom,
+      #f6dda8 0%,
+      #f4d9a0 55%,
+      #f1d59c 100%
+    );
+  z-index: -5;
+}
+
+.hero-sky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  background-image:
+    radial-gradient(#fff7d7 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ---------------------------------------------------------
+   OCEAN
+   --------------------------------------------------------- */
+
+.hero-ocean {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 47%;
+  background:
+    linear-gradient(
+      to bottom,
+      #579995 0%,
+      #4b8d8e 30%,
+      #3d7f82 100%
+    );
+  z-index: -4;
+  border-top: 5px solid #20383b;
+}
+
+.ocean-lines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.32;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 9px,
+    rgba(244, 233, 196, 0.75) 10px,
+    transparent 11px
+  );
+  animation: oceanMove 5s linear infinite;
+}
+
+@keyframes oceanMove {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(22px);
+  }
+}
+
+/* ---------------------------------------------------------
+   CLOUDS
+   --------------------------------------------------------- */
+
+.hero-cloud {
+  position: absolute;
+  height: 18px;
+  width: 95px;
+  background: rgba(255, 245, 211, 0.72);
+  image-rendering: pixelated;
+  z-index: -2;
+}
+
+.hero-cloud::before,
+.hero-cloud::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+}
+
+.hero-cloud::before {
+  width: 45px;
+  height: 30px;
+  left: 15px;
+  bottom: 0;
+}
+
+.hero-cloud::after {
+  width: 34px;
+  height: 24px;
+  right: 12px;
+  bottom: 0;
+}
+
+.cloud-one {
+  top: 190px;
+  left: 8%;
+  animation: cloudFloat 18s linear infinite;
+}
+
+.cloud-two {
+  top: 245px;
+  right: 10%;
+  transform: scale(0.75);
+  animation: cloudFloatReverse 24s linear infinite;
+}
+
+.cloud-three {
+  top: 125px;
+  left: 47%;
+  transform: scale(0.55);
+  opacity: 0.45;
+  animation: cloudFloat 28s linear infinite;
+}
+
+@keyframes cloudFloat {
+  0% {
+    transform: translateX(-20px);
+  }
+
+  50% {
+    transform: translateX(35px);
+  }
+
+  100% {
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes cloudFloatReverse {
+  0% {
+    transform: translateX(30px) scale(0.75);
+  }
+
+  50% {
+    transform: translateX(-30px) scale(0.75);
+  }
+
+  100% {
+    transform: translateX(30px) scale(0.75);
+  }
+}
+
+/* ---------------------------------------------------------
+   MOUNTAINS
+   --------------------------------------------------------- */
+
+.mountains {
+  position: absolute;
+  bottom: 43%;
+  width: 220px;
+  height: 80px;
+  background: #625a55;
+  z-index: -2;
+  clip-path: polygon(
+    0 100%,
+    0 60%,
+    13% 40%,
+    27% 58%,
+    39% 30%,
+    52% 55%,
+    69% 18%,
+    84% 52%,
+    100% 30%,
+    100% 100%
+  );
+}
+
+.mountains-left {
+  left: -30px;
+}
+
+.mountains-right {
+  right: -15px;
+  transform: scaleX(-1);
+}
+
+/* ---------------------------------------------------------
+   MAIN TITLE
+   --------------------------------------------------------- */
+
+.hero-center {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 43%;
+  transform: translate(-50%, -50%);
+  width: min(900px, 90vw);
+  text-align: center;
+}
+
+.detour-title-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.detour-title {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  color: #17353a;
+  font-size: clamp(5rem, 10vw, 9rem);
+  line-height: 0.8;
+  letter-spacing: 0.04em;
+  font-weight: 900;
+  text-shadow:
+    7px 7px 0 #f8e9bd,
+    10px 10px 0 #315b5e;
+  image-rendering: pixelated;
+}
+
+.detour-title-shadow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #f8e9bd;
+  font-size: clamp(5rem, 10vw, 9rem);
+  line-height: 0.8;
+  letter-spacing: 0.04em;
+  font-weight: 900;
+  transform: translate(7px, 8px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.detour-tagline {
+  margin: 28px 0 30px;
+  color: #203b3e;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.19em;
+  text-shadow: 1px 1px 0 rgba(255, 244, 208, 0.7);
+}
+
+/* ---------------------------------------------------------
+   BUTTONS
+   --------------------------------------------------------- */
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-width: 165px;
+  height: 51px;
+  padding: 0 20px;
+  border: 3px solid #172d31;
+  box-shadow: 5px 5px 0 #172d31;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.hero-button:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 #172d31;
+}
+
+.hero-button-primary {
+  background: #f6c94f;
+  color: #172d31;
+}
+
+.hero-button-secondary {
+  background: #f8edcf;
+  color: #172d31;
+}
+
+/* ---------------------------------------------------------
+   FACT CARDS
+   --------------------------------------------------------- */
+
+.hero-fact {
+  position: absolute;
+  z-index: 7;
+  width: 190px;
+  min-height: 92px;
+  padding: 17px 17px 15px;
+  background: #f8edcf;
+  border: 3px solid #172d31;
+  box-shadow: 5px 5px 0 #172d31;
+  transform: rotate(-2deg);
+  cursor: pointer;
+}
+
+.hero-fact::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(23, 45, 49, 0.22);
+  pointer-events: none;
+}
+
+.fact-pin {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  width: 7px;
+  height: 7px;
+  background: #df6d57;
+  border: 1px solid #172d31;
+}
+
+.fact-game {
+  margin-bottom: 8px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #347b79;
+}
+
+.fact-text {
+  max-width: 145px;
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 800;
+  color: #263a3d;
+}
+
+.fact-arrow {
+  position: absolute;
+  right: 13px;
+  bottom: 10px;
+  opacity: 0.65;
+}
+
+.fact-one {
+  top: 26%;
+  left: 8%;
+}
+
+.fact-two {
+  top: 24%;
+  right: 8%;
+  transform: rotate(2deg);
+}
+
+.fact-three {
+  bottom: 19%;
+  left: 9%;
+  transform: rotate(2deg);
+}
+
+.fact-four {
+  bottom: 17%;
+  right: 9%;
+  transform: rotate(-2deg);
+}
+
+/* ---------------------------------------------------------
+   RUNNING HORSE
+   --------------------------------------------------------- */
+
+.hero-horse {
+  position: absolute;
+  z-index: 8;
+  left: 0;
+  bottom: 39%;
+  width: 120px;
+  height: 90px;
+  color: #263a3d;
+  pointer-events: none;
+}
+
+.horse-svg {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  filter: drop-shadow(4px 4px 0 #f8edcf);
+}
+
+.horse-dust {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ead4a0;
+  border: 2px solid #315b5e;
+  opacity: 0;
+  animation: dust 0.65s infinite;
+}
+
+.dust-one {
+  left: 3px;
+  bottom: 10px;
+}
+
+.dust-two {
+  left: 16px;
+  bottom: 3px;
+  animation-delay: 0.25s;
+}
+
+@keyframes dust {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.7);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-22px, -16px) scale(1.25);
+  }
+}
+
+/* ---------------------------------------------------------
+   MINI PUZZLE CARDS
+   --------------------------------------------------------- */
+
+.mini-puzzle {
+  position: absolute;
+  z-index: 6;
+  width: 108px;
+  min-height: 100px;
+  padding: 12px;
+  background: #f7edcf;
+  border: 3px solid #172d31;
+  box-shadow: 5px 5px 0 #172d31;
+}
+
+.mini-label {
+  margin-bottom: 9px;
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+}
+
+.puzzle-word {
+  top: 34%;
+  left: 6%;
+  transform: rotate(-4deg);
+}
+
+.puzzle-number {
+  bottom: 17%;
+  left: 6%;
+  transform: rotate(3deg);
+}
+
+.puzzle-horse {
+  bottom: 18%;
+  right: 7%;
+  transform: rotate(3deg);
+}
+
+.word-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+}
+
+.word-row span {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background: #e7ddc0;
+  border: 1px solid #34484a;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.word-row .green {
+  background: #5e9991;
+  color: #fff6d7;
+}
+
+.word-row .yellow {
+  background: #f0c84d;
+}
+
+.number-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.number-grid span {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border: 1px solid #59615c;
+  background: #eee4c9;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.number-grid .empty {
+  background: #f0c84d;
+}
+
+.mini-horse {
+  text-align: center;
+  margin-top: 3px;
+  font-size: 47px;
+  line-height: 1;
+  color: #c76550;
+}
+
+/* ---------------------------------------------------------
+   STAMPS
+   --------------------------------------------------------- */
+
+.hero-stamp {
+  position: absolute;
+  z-index: 6;
+  padding: 9px 14px;
+  background: #f6c94f;
+  border: 3px solid #172d31;
+  box-shadow: 4px 4px 0 #172d31;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+}
+
+.stamp-new {
+  top: 17%;
+  left: 19%;
+  transform: rotate(-2deg);
+}
+
+.stamp-games {
+  top: 18%;
+  right: 19%;
+  transform: rotate(2deg);
+}
+
+/* ---------------------------------------------------------
+   FLOATING SYMBOLS
+   --------------------------------------------------------- */
+
+.hero-symbol {
+  position: absolute;
+  z-index: 1;
+  font-weight: 900;
+  opacity: 0.42;
+  animation: symbolFloat 5s ease-in-out infinite;
+}
+
+.symbol-one {
+  top: 40%;
+  left: 31%;
+  color: #72aaa1;
+  font-size: 22px;
+}
+
+.symbol-two {
+  top: 25%;
+  right: 27%;
+  color: #d26f52;
+  font-size: 18px;
+  animation-delay: 1s;
+}
+
+.symbol-three {
+  top: 19%;
+  right: 7%;
+  color: #f3c747;
+  font-size: 22px;
+  animation-delay: 0.7s;
+}
+
+.symbol-four {
+  bottom: 21%;
+  left: 44%;
+  color: #e7e1c5;
+  font-size: 27px;
+  animation-delay: 1.8s;
+}
+
+.symbol-five {
+  bottom: 11%;
+  right: 13%;
+  color: #e7e1c5;
+  font-size: 20px;
+  animation-delay: 2.2s;
+}
+
+@keyframes symbolFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-9px) rotate(8deg);
+  }
+}
+
+/* ---------------------------------------------------------
+   SCROLL LABEL
+   --------------------------------------------------------- */
+
+.hero-scroll {
+  position: absolute;
+  z-index: 10;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f3e8c9;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .detour-hero {
+    height: 760px;
+  }
+
+  .hero-fact {
+    width: 155px;
+  }
+
+  .fact-one {
+    left: 4%;
+  }
+
+  .fact-two {
+    right: 4%;
+  }
+
+  .fact-three {
+    left: 4%;
+  }
+
+  .fact-four {
+    right: 4%;
+  }
+
+  .puzzle-word {
+    left: 3%;
+  }
+
+  .puzzle-number {
+    left: 3%;
+  }
+
+  .puzzle-horse {
+    right: 3%;
+  }
+
+  .stamp-new {
+    left: 12%;
+  }
+
+  .stamp-games {
+    right: 12%;
+  }
+}
+
+@media (max-width: 700px) {
+  .detour-hero {
+    min-height: 760px;
+    height: auto;
+  }
+
+  .hero-center {
+    top: 42%;
+  }
+
+  .detour-title,
+  .detour-title-shadow {
+    font-size: clamp(4rem, 18vw, 6rem);
+  }
+
+  .detour-tagline {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    margin-top: 22px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-button {
+    width: 190px;
+  }
+
+  .hero-fact {
+    width: 125px;
+    min-height: 72px;
+    padding: 11px;
+  }
+
+  .fact-game {
+    font-size: 7px;
+  }
+
+  .fact-text {
+    font-size: 9px;
+  }
+
+  .fact-one {
+    top: 18%;
+    left: 4%;
+  }
+
+  .fact-two {
+    top: 18%;
+    right: 4%;
+  }
+
+  .fact-three {
+    bottom: 15%;
+    left: 4%;
+  }
+
+  .fact-four {
+    bottom: 15%;
+    right: 4%;
+  }
+
+  .mini-puzzle {
+    transform: scale(0.78);
+  }
+
+  .puzzle-word {
+    top: 31%;
+    left: -5px;
+  }
+
+  .puzzle-number {
+    bottom: 27%;
+    left: -5px;
+  }
+
+  .puzzle-horse {
+    bottom: 27%;
+    right: -5px;
+  }
+
+  .stamp-new {
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+  }
+
+  .stamp-games {
+    display: none;
+  }
+
+  .hero-horse {
+    bottom: 40%;
+    transform: scale(0.7);
+  }
+
+  .symbol-four,
+  .symbol-five {
+    display: none;
+  }
+}
