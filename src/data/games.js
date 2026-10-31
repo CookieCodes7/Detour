@@ -86,7 +86,7 @@ const rows = [
   ['birdle','Birdle','science','Identify the daily bird using hints, calls and a growing set of clues.','Medium',5,'birds daily trivia','https://www.birdle.fun/','#16A34A',2026,'d','Five guesses • one bird'],
   ['chainle','Chainle','word','Find the word in the middle of clue pairs, with five daily connection rounds.','Medium',6,'word connections daily','https://chainle.io/','#14B8A6',2026,'d','Five rounds • find the link'],
   ['metazooa','Metazooa','science','Guess the mystery animal while every wrong guess reveals another branch of its taxonomy.','Hard',8,'animals daily trivia','https://metazooa.com/','#84CC16',2021,'d','20 guesses • climb the family tree'],
-  ['enclose-horse','Enclose Horse','strategy','Place a limited number of fences to enclose the horse and maximize the area you capture.','Hard',5,'optimization daily strategy','https://enclosehorse.com/','#15803D',2026,'d','One puzzle • one shot'],
+  ['enclose-horse','Enclose Horse','strategy','Place a limited number of fences to enclose the horse and maximize the area you capture.','Hard',5,'optimization daily strategy','https://enclose.horse/','#15803D',2026,'d','One puzzle • one shot'],
   ['musculoskelordle','Musculoskelordle','science','Guess the mystery muscle from anatomy clues including region, origin, insertion, action and innervation.','Hard',10,'anatomy daily education','https://www.musculoskelordle.net/','#DC2626',2022,'d','Name the muscle'],
 ];
 
